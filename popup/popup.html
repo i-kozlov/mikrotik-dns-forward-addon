@@ -2,33 +2,33 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Add DNS Forward</title>
+  <title>__MSG_popupTitle__</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
-    <h2>Add DNS Forward to MikroTik</h2>
-    
+    <h2>__MSG_popupHeader__</h2>
+
     <div id="config-missing" class="warning" style="display: none;">
-      <p>⚠️ Configuration required</p>
-      <button id="open-settings">Open Settings</button>
+      <p>⚠️ __MSG_configRequired__</p>
+      <button id="open-settings">__MSG_openSettings__</button>
     </div>
-    
+
     <div id="main-content" style="display: none;">
       <div class="domain-display">
-        <label for="domain-input">Domain:</label>
-        <input type="text" id="domain-input" class="domain-input" placeholder="example.com" />
-        <span class="hint">You can edit the domain before adding</span>
+        <label for="domain-input">__MSG_domainLabel__</label>
+        <input type="text" id="domain-input" class="domain-input" placeholder="__MSG_domainPlaceholder__" />
+        <span class="hint">__MSG_domainHint__</span>
       </div>
-      
+
       <div class="actions">
-        <button id="add-button" class="primary">Add to MikroTik</button>
+        <button id="add-button" class="primary">__MSG_addButton__</button>
       </div>
-      
+
       <div id="status" class="status"></div>
     </div>
   </div>
-  
+
   <script src="../utils.js"></script>
   <script src="popup.js"></script>
 </body>

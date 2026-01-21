@@ -2,58 +2,58 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>MikroTik DNS Forward - Settings</title>
+  <title>__MSG_settingsTitle__</title>
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
   <div class="container">
-    <h1>MikroTik DNS Forward Settings</h1>
-    
+    <h1>__MSG_settingsHeader__</h1>
+
     <div class="section">
-      <h2>MikroTik Router Configuration</h2>
-      
+      <h2>__MSG_routerConfig__</h2>
+
       <div class="form-group">
-        <label for="mikrotik-url">Router URL:</label>
-        <input type="text" id="mikrotik-url" placeholder="http://192.168.88.1" value="http://192.168.88.1" />
-        <span class="hint">Include protocol (http:// or https://) and IP/hostname</span>
+        <label for="mikrotik-url">__MSG_routerUrl__</label>
+        <input type="text" id="mikrotik-url" placeholder="__MSG_routerUrlPlaceholder__" value="http://192.168.88.1" />
+        <span class="hint">__MSG_routerUrlHint__</span>
       </div>
-      
+
       <div class="form-group">
-        <label for="mikrotik-username">Username:</label>
-        <input type="text" id="mikrotik-username" placeholder="admin" autocomplete="username" />
+        <label for="mikrotik-username">__MSG_username__</label>
+        <input type="text" id="mikrotik-username" placeholder="__MSG_usernamePlaceholder__" autocomplete="username" />
       </div>
-      
+
       <div class="form-group">
-        <label for="mikrotik-password">Password:</label>
-        <input type="password" id="mikrotik-password" placeholder="password" autocomplete="current-password" />
-        <span class="hint warning">⚠️ Password is stored locally in browser storage</span>
-        <span class="hint info">💡 Recommended: Create a separate user with limited permissions:
+        <label for="mikrotik-password">__MSG_password__</label>
+        <input type="password" id="mikrotik-password" placeholder="__MSG_passwordPlaceholder__" autocomplete="current-password" />
+        <span class="hint warning">__MSG_passwordWarning__</span>
+        <span class="hint info">__MSG_passwordInfo__
           <code>/user add name=dns-api password=long-random-password group=write</code>
         </span>
       </div>
     </div>
-    
+
     <div class="section">
-      <h2>DNS Forward Configuration</h2>
-      
+      <h2>__MSG_dnsConfig__</h2>
+
       <div class="form-group">
-        <label for="dns-forward-to">Forward To:</label>
-        <input type="text" id="dns-forward-to" placeholder="MihomoProxyRoS" value="MihomoProxyRoS" />
-        <span class="hint">Target DNS server or proxy name</span>
+        <label for="dns-forward-to">__MSG_forwardTo__</label>
+        <input type="text" id="dns-forward-to" placeholder="__MSG_forwardToPlaceholder__" value="MihomoProxyRoS" />
+        <span class="hint">__MSG_forwardToHint__</span>
       </div>
-      
+
       <div class="form-group">
-        <label for="dns-comment">Comment:</label>
-        <input type="text" id="dns-comment" placeholder="_my" />
-        <span class="hint">Comment to identify DNS entries</span>
+        <label for="dns-comment">__MSG_comment__</label>
+        <input type="text" id="dns-comment" placeholder="__MSG_commentPlaceholder__" />
+        <span class="hint">__MSG_commentHint__</span>
       </div>
     </div>
-    
+
     <div class="actions">
-      <button id="save-button" class="primary">Save Settings</button>
-      <button id="test-button">Test Connection</button>
+      <button id="save-button" class="primary">__MSG_saveButton__</button>
+      <button id="test-button">__MSG_testButton__</button>
     </div>
-    
+
     <div id="status" class="status"></div>
 
     <div class="build-info">v<span id="app-version"></span> | Build: <span id="build-date">__BUILD_DATE__</span></div>

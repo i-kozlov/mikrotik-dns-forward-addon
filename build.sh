@@ -8,7 +8,7 @@ rm -rf "$DIST_DIR"
 mkdir -p "$DIST_DIR"
 
 # Common files
-FILES="background.js utils.js popup options icons"
+FILES="background.js utils.js popup options icons _locales"
 
 # Chrome build
 echo "Building Chrome extension..."

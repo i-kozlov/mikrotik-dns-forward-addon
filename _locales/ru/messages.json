@@ -1,0 +1,95 @@
+{
+  "extName": {
+    "message": "MikroTik DNS Forward"
+  },
+  "extDescription": {
+    "message": "Добавление DNS forward правил на MikroTik роутер с любого сайта"
+  },
+  "popupTitle": {
+    "message": "Добавить DNS Forward"
+  },
+  "popupHeader": {
+    "message": "Добавить DNS Forward на MikroTik"
+  },
+  "configRequired": {
+    "message": "Требуется настройка"
+  },
+  "openSettings": {
+    "message": "Открыть настройки"
+  },
+  "domainLabel": {
+    "message": "Домен:"
+  },
+  "domainPlaceholder": {
+    "message": "example.com"
+  },
+  "domainHint": {
+    "message": "Вы можете изменить домен перед добавлением"
+  },
+  "addButton": {
+    "message": "Добавить в MikroTik"
+  },
+  "settingsTitle": {
+    "message": "MikroTik DNS Forward - Настройки"
+  },
+  "settingsHeader": {
+    "message": "Настройки MikroTik DNS Forward"
+  },
+  "routerConfig": {
+    "message": "Настройка MikroTik роутера"
+  },
+  "routerUrl": {
+    "message": "URL роутера:"
+  },
+  "routerUrlPlaceholder": {
+    "message": "http://192.168.88.1"
+  },
+  "routerUrlHint": {
+    "message": "Укажите протокол (http:// или https://) и IP/hostname"
+  },
+  "username": {
+    "message": "Имя пользователя:"
+  },
+  "usernamePlaceholder": {
+    "message": "admin"
+  },
+  "password": {
+    "message": "Пароль:"
+  },
+  "passwordPlaceholder": {
+    "message": "password"
+  },
+  "passwordWarning": {
+    "message": "⚠️ Пароль хранится локально в хранилище браузера"
+  },
+  "passwordInfo": {
+    "message": "💡 Рекомендуется: Создайте отдельного пользователя с ограниченными правами:"
+  },
+  "dnsConfig": {
+    "message": "Настройка DNS Forward"
+  },
+  "forwardTo": {
+    "message": "Перенаправить на:"
+  },
+  "forwardToPlaceholder": {
+    "message": "MihomoProxyRoS"
+  },
+  "forwardToHint": {
+    "message": "Целевой DNS сервер или имя прокси"
+  },
+  "comment": {
+    "message": "Комментарий:"
+  },
+  "commentPlaceholder": {
+    "message": "_my"
+  },
+  "commentHint": {
+    "message": "Комментарий для идентификации DNS записей"
+  },
+  "saveButton": {
+    "message": "Сохранить настройки"
+  },
+  "testButton": {
+    "message": "Проверить подключение"
+  }
+}
