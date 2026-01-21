@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add DNS Forward</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Add DNS Forward to MikroTik</h2>
+    
+    <div id="config-missing" class="warning" style="display: none;">
+      <p>⚠️ Configuration required</p>
+      <button id="open-settings">Open Settings</button>
+    </div>
+    
+    <div id="main-content" style="display: none;">
+      <div class="domain-display">
+        <label for="domain-input">Domain:</label>
+        <input type="text" id="domain-input" class="domain-input" placeholder="example.com" />
+        <span class="hint">You can edit the domain before adding</span>
+      </div>
+      
+      <div class="actions">
+        <button id="add-button" class="primary">Add to MikroTik</button>
+      </div>
+      
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+  
+  <script src="../utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

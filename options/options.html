@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MikroTik DNS Forward - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>MikroTik DNS Forward Settings</h1>
+    
+    <div class="section">
+      <h2>MikroTik Router Configuration</h2>
+      
+      <div class="form-group">
+        <label for="mikrotik-url">Router URL:</label>
+        <input type="text" id="mikrotik-url" placeholder="http://192.168.88.1" value="http://192.168.88.1" />
+        <span class="hint">Include protocol (http:// or https://) and IP/hostname</span>
+      </div>
+      
+      <div class="form-group">
+        <label for="mikrotik-username">Username:</label>
+        <input type="text" id="mikrotik-username" placeholder="admin" autocomplete="username" />
+      </div>
+      
+      <div class="form-group">
+        <label for="mikrotik-password">Password:</label>
+        <input type="password" id="mikrotik-password" placeholder="password" autocomplete="current-password" />
+        <span class="hint warning">⚠️ Password is stored locally in browser storage</span>
+        <span class="hint info">💡 Recommended: Create a separate user with limited permissions:
+          <code>/user add name=dns-api password=long-random-password group=write</code>
+        </span>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>DNS Forward Configuration</h2>
+      
+      <div class="form-group">
+        <label for="dns-forward-to">Forward To:</label>
+        <input type="text" id="dns-forward-to" placeholder="MihomoProxyRoS" value="MihomoProxyRoS" />
+        <span class="hint">Target DNS server or proxy name</span>
+      </div>
+      
+      <div class="form-group">
+        <label for="dns-comment">Comment:</label>
+        <input type="text" id="dns-comment" placeholder="_my" />
+        <span class="hint">Comment to identify DNS entries</span>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button id="save-button" class="primary">Save Settings</button>
+      <button id="test-button">Test Connection</button>
+    </div>
+    
+    <div id="status" class="status"></div>
+  </div>
+  
+  <script src="../utils.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
