@@ -1,5 +1,8 @@
 // Load saved config on page load
-document.addEventListener('DOMContentLoaded', loadSavedConfig);
+document.addEventListener('DOMContentLoaded', () => {
+  loadSavedConfig();
+  document.getElementById('app-version').textContent = chrome.runtime.getManifest().version;
+});
 
 // Button handlers
 document.getElementById('save-button').addEventListener('click', saveConfig);
@@ -64,9 +67,8 @@ async function testConnection() {
     button.textContent = 'Test Connection';
     return;
   }
-  
+
   try {
-    // Try to get system identity as a test
     const response = await fetch(`${config.mikrotik.url}/rest/system/identity`, {
       method: 'GET',
       cache: 'no-store',
@@ -74,30 +76,20 @@ async function testConnection() {
         'Authorization': 'Basic ' + btoa(`${config.mikrotik.username}:${config.mikrotik.password}`)
       }
     });
-    
+
     if (response.ok) {
       const data = await response.json();
-      
-      // MikroTik REST API returns: {"name": "RouterName"}
       const identity = data.name || 'Unknown Router';
-      
       showStatus('success', `✅ Connection successful! Router: ${identity}`);
     } else if (response.status === 401) {
-      // Unauthorized - wrong credentials
       showStatus('error', '❌ Authentication failed: Invalid username or password');
     } else if (response.status === 403) {
-      // Forbidden - user doesn't have permissions
       showStatus('error', '❌ Access denied: User lacks required permissions');
     } else {
-      showStatus('error', `❌ Connection failed: HTTP ${response.status} - ${response.statusText}`);
+      showStatus('error', `❌ Connection failed: HTTP ${response.status}`);
     }
   } catch (error) {
-    // Network errors, CORS issues, etc.
-    if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-      showStatus('error', `❌ Cannot connect to router. Check URL and ensure REST API is enabled.`);
-    } else {
-      showStatus('error', `❌ Connection failed: ${error.message}`);
-    }
+    showStatus('error', `❌ Cannot connect to router: ${error.message}`);
   } finally {
     button.disabled = false;
     button.textContent = 'Test Connection';

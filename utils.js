@@ -48,11 +48,7 @@ function validateConfig(config) {
   if (!dns.forwardTo) {
     return { valid: false, error: 'DNS forward-to target is required' };
   }
-  
-  if (!dns.comment) {
-    return { valid: false, error: 'DNS comment is required' };
-  }
-  
+
   return { valid: true };
 }
 

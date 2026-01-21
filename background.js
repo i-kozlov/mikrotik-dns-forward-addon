@@ -1,4 +1,6 @@
-// Handle messages from popup
+const FETCH_TIMEOUT = 5000; // 5 seconds
+
+// Handle messages from popup/options
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'addDnsForward') {
     addDnsForward(request.domain, request.config)
@@ -8,27 +10,83 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         message: error.message,
         code: 'EXCEPTION'
       }));
-    return true; // Keep message channel open for async response
+    return true;
+  }
+  if (request.action === 'testConnection') {
+    testConnection(request.config)
+      .then(result => sendResponse(result))
+      .catch(error => sendResponse({
+        success: false,
+        message: error.message,
+        code: 'EXCEPTION'
+      }));
+    return true;
   }
 });
 
+async function testConnection(config) {
+  const url = `${config.mikrotik.url}/rest/system/identity`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      cache: 'no-store',
+      signal: controller.signal,
+      headers: {
+        'Authorization': 'Basic ' + btoa(`${config.mikrotik.username}:${config.mikrotik.password}`)
+      }
+    });
+    clearTimeout(timeoutId);
+
+    if (response.ok) {
+      const data = await response.json();
+      return {
+        success: true,
+        identity: data.name || 'Unknown Router'
+      };
+    } else if (response.status === 401) {
+      return { success: false, message: 'Authentication failed: Invalid username or password', code: 'AUTH_ERROR' };
+    } else if (response.status === 403) {
+      return { success: false, message: 'Access denied: User lacks required permissions', code: 'FORBIDDEN' };
+    } else {
+      return { success: false, message: `HTTP ${response.status} - ${response.statusText}`, code: 'HTTP_ERROR' };
+    }
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      return { success: false, message: 'Connection timeout', code: 'TIMEOUT' };
+    }
+    return { success: false, message: `Cannot connect: ${error.message}`, code: 'NETWORK_ERROR' };
+  }
+}
+
 async function addDnsForward(domain, config) {
   const url = `${config.mikrotik.url}/rest/ip/dns/static/add`;
-  
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+  const body = {
+    name: domain,
+    'forward-to': config.dns.forwardTo
+  };
+  if (config.dns.comment) {
+    body.comment = config.dns.comment;
+  }
+
   try {
     const response = await fetch(url, {
       method: 'POST',
       cache: 'no-store',
+      signal: controller.signal,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa(`${config.mikrotik.username}:${config.mikrotik.password}`)
       },
-      body: JSON.stringify({
-        name: domain,
-        'forward-to': config.dns.forwardTo,
-        comment: config.dns.comment
-      })
+      body: JSON.stringify(body)
     });
+    clearTimeout(timeoutId);
 
     const data = await response.json();
 
@@ -59,7 +117,10 @@ async function addDnsForward(domain, config) {
     };
     
   } catch (error) {
-    // Network or parsing errors
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      return { success: false, message: 'Connection timeout', code: 'TIMEOUT' };
+    }
     return {
       success: false,
       message: `Failed to connect to MikroTik: ${error.message}`,

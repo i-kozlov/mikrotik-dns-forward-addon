@@ -169,3 +169,10 @@ button:disabled {
   border: 1px solid #bee5eb;
   color: #0c5460;
 }
+
+.build-info {
+  margin-top: 24px;
+  font-size: 11px;
+  color: #999;
+  text-align: center;
+}
