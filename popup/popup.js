@@ -1,34 +1,33 @@
+// Firefox uses 'browser', Chrome uses 'chrome'
+if (typeof browserAPI === 'undefined') {
+  var browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+}
+
 let currentDomain = null;
 let config = null;
 
 // Initialize popup
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('popup.js DOMContentLoaded started');
-
   // Load config from storage
   config = await loadConfig();
-  console.log('config loaded:', config);
 
   // Check if config is valid
   const validation = validateConfig(config);
-  console.log('validation:', validation);
-
   if (!validation.valid) {
-    console.log('showing config-missing');
     showConfigMissing();
     return;
   }
 
   // Get current tab and extract domain
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browserAPI.tabs.query({ active: true, currentWindow: true });
   if (!tab || !tab.url) {
-    showStatus('error', chrome.i18n.getMessage('cannotGetTabUrl'));
+    showStatus('error', browserAPI.i18n.getMessage('cannotGetTabUrl'));
     return;
   }
 
   currentDomain = getBaseDomain(tab.url);
   if (!currentDomain) {
-    showStatus('error', chrome.i18n.getMessage('cannotExtractDomain'));
+    showStatus('error', browserAPI.i18n.getMessage('cannotExtractDomain'));
     return;
   }
 
@@ -42,22 +41,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Open settings button handler
 document.getElementById('open-settings').addEventListener('click', () => {
-  chrome.runtime.openOptionsPage();
+  browserAPI.runtime.openOptionsPage();
 });
 
 async function loadConfig() {
   return new Promise((resolve) => {
-    chrome.storage.local.get(['config'], (result) => {
+    browserAPI.storage.local.get(['config'], (result) => {
       resolve(result.config || null);
     });
   });
 }
 
 function showConfigMissing() {
-  const el = document.getElementById('config-missing');
-  console.log('config-missing element:', el);
-  el.style.display = 'block';
-  console.log('config-missing display set to block');
+  document.getElementById('config-missing').style.display = 'block';
 }
 
 async function handleAddDomain() {
@@ -66,16 +62,16 @@ async function handleAddDomain() {
   const domain = domainInput.value.trim();
 
   if (!domain) {
-    showStatus('error', chrome.i18n.getMessage('domainEmpty'));
+    showStatus('error', browserAPI.i18n.getMessage('domainEmpty'));
     return;
   }
 
   button.disabled = true;
-  button.textContent = chrome.i18n.getMessage('addingButton');
+  button.textContent = browserAPI.i18n.getMessage('addingButton');
 
   try {
     // Send message to background script
-    const result = await chrome.runtime.sendMessage({
+    const result = await browserAPI.runtime.sendMessage({
       action: 'addDnsForward',
       domain: domain,
       config: config
@@ -85,11 +81,11 @@ async function handleAddDomain() {
       showStatus('success', `✅ ${result.message}`);
 
       // Show notification
-      chrome.notifications.create({
+      browserAPI.notifications.create({
         type: 'basic',
         iconUrl: '../icons/icon48.png',
-        title: chrome.i18n.getMessage('notificationTitle'),
-        message: chrome.i18n.getMessage('notificationMessage', [domain])
+        title: browserAPI.i18n.getMessage('notificationTitle'),
+        message: browserAPI.i18n.getMessage('notificationMessage', [domain])
       });
 
       // Close popup after 2 seconds
@@ -101,12 +97,12 @@ async function handleAddDomain() {
         showStatus('error', `❌ ${result.message}`);
       }
       button.disabled = false;
-      button.textContent = chrome.i18n.getMessage('addButton');
+      button.textContent = browserAPI.i18n.getMessage('addButton');
     }
   } catch (error) {
-    showStatus('error', chrome.i18n.getMessage('errorPrefix', [error.message]));
+    showStatus('error', browserAPI.i18n.getMessage('errorPrefix', [error.message]));
     button.disabled = false;
-    button.textContent = chrome.i18n.getMessage('addButton');
+    button.textContent = browserAPI.i18n.getMessage('addButton');
   }
 }
 
