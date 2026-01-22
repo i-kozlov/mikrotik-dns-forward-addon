@@ -2,56 +2,56 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>__MSG_settingsTitle__</title>
+  <title data-i18n="settingsTitle">Settings</title>
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
   <div class="container">
-    <h1>__MSG_settingsHeader__</h1>
+    <h1 data-i18n="settingsHeader"></h1>
 
     <div class="section">
-      <h2>__MSG_routerConfig__</h2>
+      <h2 data-i18n="routerConfig"></h2>
 
       <div class="form-group">
-        <label for="mikrotik-url">__MSG_routerUrl__</label>
-        <input type="text" id="mikrotik-url" placeholder="__MSG_routerUrlPlaceholder__" value="http://192.168.88.1" />
-        <span class="hint">__MSG_routerUrlHint__</span>
+        <label for="mikrotik-url" data-i18n="routerUrl"></label>
+        <input type="text" id="mikrotik-url" data-i18n-placeholder="routerUrlPlaceholder" value="http://192.168.88.1" />
+        <span class="hint" data-i18n="routerUrlHint"></span>
       </div>
 
       <div class="form-group">
-        <label for="mikrotik-username">__MSG_username__</label>
-        <input type="text" id="mikrotik-username" placeholder="__MSG_usernamePlaceholder__" autocomplete="username" />
+        <label for="mikrotik-username" data-i18n="username"></label>
+        <input type="text" id="mikrotik-username" data-i18n-placeholder="usernamePlaceholder" autocomplete="username" />
       </div>
 
       <div class="form-group">
-        <label for="mikrotik-password">__MSG_password__</label>
-        <input type="password" id="mikrotik-password" placeholder="__MSG_passwordPlaceholder__" autocomplete="current-password" />
-        <span class="hint warning">__MSG_passwordWarning__</span>
-        <span class="hint info">__MSG_passwordInfo__
+        <label for="mikrotik-password" data-i18n="password"></label>
+        <input type="password" id="mikrotik-password" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password" />
+        <span class="hint warning" data-i18n="passwordWarning"></span>
+        <span class="hint info"><span data-i18n="passwordInfo"></span>
           <code>/user add name=dns-api password=long-random-password group=write</code>
         </span>
       </div>
     </div>
 
     <div class="section">
-      <h2>__MSG_dnsConfig__</h2>
+      <h2 data-i18n="dnsConfig"></h2>
 
       <div class="form-group">
-        <label for="dns-forward-to">__MSG_forwardTo__</label>
-        <input type="text" id="dns-forward-to" placeholder="__MSG_forwardToPlaceholder__" value="MihomoProxyRoS" />
-        <span class="hint">__MSG_forwardToHint__</span>
+        <label for="dns-forward-to" data-i18n="forwardTo"></label>
+        <input type="text" id="dns-forward-to" data-i18n-placeholder="forwardToPlaceholder" value="MihomoProxyRoS" />
+        <span class="hint" data-i18n="forwardToHint"></span>
       </div>
 
       <div class="form-group">
-        <label for="dns-comment">__MSG_comment__</label>
-        <input type="text" id="dns-comment" placeholder="__MSG_commentPlaceholder__" />
-        <span class="hint">__MSG_commentHint__</span>
+        <label for="dns-comment" data-i18n="comment"></label>
+        <input type="text" id="dns-comment" data-i18n-placeholder="commentPlaceholder" />
+        <span class="hint" data-i18n="commentHint"></span>
       </div>
     </div>
 
     <div class="actions">
-      <button id="save-button" class="primary">__MSG_saveButton__</button>
-      <button id="test-button">__MSG_testButton__</button>
+      <button id="save-button" class="primary" data-i18n="saveButton"></button>
+      <button id="test-button" data-i18n="testButton"></button>
     </div>
 
     <div id="status" class="status"></div>
@@ -60,6 +60,7 @@
   </div>
 
   <script src="../utils.js"></script>
+  <script src="../i18n.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

@@ -2,27 +2,27 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>__MSG_popupTitle__</title>
+  <title data-i18n="popupTitle">MikroTik DNS Forward</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
-    <h2>__MSG_popupHeader__</h2>
+    <h2 data-i18n="popupHeader"></h2>
 
     <div id="config-missing" class="warning" style="display: none;">
-      <p>⚠️ __MSG_configRequired__</p>
-      <button id="open-settings">__MSG_openSettings__</button>
+      <p>⚠️ <span data-i18n="configRequired"></span></p>
+      <button id="open-settings" data-i18n="openSettings"></button>
     </div>
 
     <div id="main-content" style="display: none;">
       <div class="domain-display">
-        <label for="domain-input">__MSG_domainLabel__</label>
-        <input type="text" id="domain-input" class="domain-input" placeholder="__MSG_domainPlaceholder__" />
-        <span class="hint">__MSG_domainHint__</span>
+        <label for="domain-input" data-i18n="domainLabel"></label>
+        <input type="text" id="domain-input" class="domain-input" data-i18n-placeholder="domainPlaceholder" />
+        <span class="hint" data-i18n="domainHint"></span>
       </div>
 
       <div class="actions">
-        <button id="add-button" class="primary">__MSG_addButton__</button>
+        <button id="add-button" class="primary" data-i18n="addButton"></button>
       </div>
 
       <div id="status" class="status"></div>
@@ -30,6 +30,7 @@
   </div>
 
   <script src="../utils.js"></script>
+  <script src="../i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -91,5 +91,92 @@
   },
   "testButton": {
     "message": "Test Connection"
+  },
+  "testingButton": {
+    "message": "Testing..."
+  },
+  "fillAllFields": {
+    "message": "Please fill in all MikroTik fields first"
+  },
+  "settingsSaved": {
+    "message": "Settings saved successfully"
+  },
+  "connectionSuccess": {
+    "message": "Connection successful! Router: $router$",
+    "placeholders": {
+      "router": { "content": "$1" }
+    }
+  },
+  "authFailed": {
+    "message": "Authentication failed: Invalid username or password"
+  },
+  "accessDenied": {
+    "message": "Access denied: User lacks required permissions"
+  },
+  "connectionFailed": {
+    "message": "Connection failed: HTTP $status$",
+    "placeholders": {
+      "status": { "content": "$1" }
+    }
+  },
+  "cannotConnect": {
+    "message": "Cannot connect to router: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "cannotGetTabUrl": {
+    "message": "Cannot get current tab URL"
+  },
+  "cannotExtractDomain": {
+    "message": "Cannot extract domain from URL"
+  },
+  "domainEmpty": {
+    "message": "Domain cannot be empty"
+  },
+  "addingButton": {
+    "message": "Adding..."
+  },
+  "notificationTitle": {
+    "message": "DNS Forward Added"
+  },
+  "notificationMessage": {
+    "message": "Domain $domain$ added to MikroTik",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "errorPrefix": {
+    "message": "Error: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "unknownRouter": {
+    "message": "Unknown Router"
+  },
+  "connectionTimeout": {
+    "message": "Connection timeout"
+  },
+  "domainAddedSuccess": {
+    "message": "Domain $domain$ added successfully",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "domainAlreadyExists": {
+    "message": "Domain $domain$ already exists in DNS",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "unknownMikrotikError": {
+    "message": "Unknown error from MikroTik"
+  },
+  "failedToConnect": {
+    "message": "Failed to connect to MikroTik: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
   }
 }

@@ -91,5 +91,92 @@
   },
   "testButton": {
     "message": "Проверить подключение"
+  },
+  "testingButton": {
+    "message": "Проверка..."
+  },
+  "fillAllFields": {
+    "message": "Заполните все поля MikroTik"
+  },
+  "settingsSaved": {
+    "message": "Настройки сохранены"
+  },
+  "connectionSuccess": {
+    "message": "Подключение успешно! Роутер: $router$",
+    "placeholders": {
+      "router": { "content": "$1" }
+    }
+  },
+  "authFailed": {
+    "message": "Ошибка аутентификации: Неверное имя пользователя или пароль"
+  },
+  "accessDenied": {
+    "message": "Доступ запрещён: У пользователя нет необходимых прав"
+  },
+  "connectionFailed": {
+    "message": "Ошибка подключения: HTTP $status$",
+    "placeholders": {
+      "status": { "content": "$1" }
+    }
+  },
+  "cannotConnect": {
+    "message": "Невозможно подключиться к роутеру: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "cannotGetTabUrl": {
+    "message": "Невозможно получить URL текущей вкладки"
+  },
+  "cannotExtractDomain": {
+    "message": "Невозможно извлечь домен из URL"
+  },
+  "domainEmpty": {
+    "message": "Домен не может быть пустым"
+  },
+  "addingButton": {
+    "message": "Добавление..."
+  },
+  "notificationTitle": {
+    "message": "DNS Forward добавлен"
+  },
+  "notificationMessage": {
+    "message": "Домен $domain$ добавлен в MikroTik",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "errorPrefix": {
+    "message": "Ошибка: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "unknownRouter": {
+    "message": "Неизвестный роутер"
+  },
+  "connectionTimeout": {
+    "message": "Превышено время ожидания"
+  },
+  "domainAddedSuccess": {
+    "message": "Домен $domain$ успешно добавлен",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "domainAlreadyExists": {
+    "message": "Домен $domain$ уже существует в DNS",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "unknownMikrotikError": {
+    "message": "Неизвестная ошибка MikroTik"
+  },
+  "failedToConnect": {
+    "message": "Ошибка подключения к MikroTik: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
   }
 }
