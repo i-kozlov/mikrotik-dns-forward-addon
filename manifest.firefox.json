@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "MikroTik DNS Forward",
+  "name": "__MSG_extName__",
   "version": "1.2.0",
-  "description": "Quickly add DNS forward rules to MikroTik router from current browser tab",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": [
     "activeTab",
     "storage",

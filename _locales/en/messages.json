@@ -1,0 +1,182 @@
+{
+  "extName": {
+    "message": "MikroTik DNS Forward"
+  },
+  "extDescription": {
+    "message": "Add DNS forward rules to MikroTik router from any website"
+  },
+  "popupTitle": {
+    "message": "Add DNS Forward"
+  },
+  "popupHeader": {
+    "message": "Add DNS Forward to MikroTik"
+  },
+  "configRequired": {
+    "message": "Configuration required"
+  },
+  "openSettings": {
+    "message": "Open Settings"
+  },
+  "domainLabel": {
+    "message": "Domain:"
+  },
+  "domainPlaceholder": {
+    "message": "example.com"
+  },
+  "domainHint": {
+    "message": "You can edit the domain before adding"
+  },
+  "addButton": {
+    "message": "Add to MikroTik"
+  },
+  "settingsTitle": {
+    "message": "MikroTik DNS Forward - Settings"
+  },
+  "settingsHeader": {
+    "message": "MikroTik DNS Forward Settings"
+  },
+  "routerConfig": {
+    "message": "MikroTik Router Configuration"
+  },
+  "routerUrl": {
+    "message": "Router URL:"
+  },
+  "routerUrlPlaceholder": {
+    "message": "http://192.168.88.1"
+  },
+  "routerUrlHint": {
+    "message": "Include protocol (http:// or https://) and IP/hostname"
+  },
+  "username": {
+    "message": "Username:"
+  },
+  "usernamePlaceholder": {
+    "message": "admin"
+  },
+  "password": {
+    "message": "Password:"
+  },
+  "passwordPlaceholder": {
+    "message": "password"
+  },
+  "passwordWarning": {
+    "message": "⚠️ Password is stored locally in browser storage"
+  },
+  "passwordInfo": {
+    "message": "💡 Recommended: Create a separate user with limited permissions:"
+  },
+  "dnsConfig": {
+    "message": "DNS Forward Configuration"
+  },
+  "forwardTo": {
+    "message": "Forward To:"
+  },
+  "forwardToPlaceholder": {
+    "message": "MihomoProxyRoS"
+  },
+  "forwardToHint": {
+    "message": "Target DNS server or proxy name"
+  },
+  "comment": {
+    "message": "Comment:"
+  },
+  "commentPlaceholder": {
+    "message": "_my"
+  },
+  "commentHint": {
+    "message": "Comment to identify DNS entries"
+  },
+  "saveButton": {
+    "message": "Save Settings"
+  },
+  "testButton": {
+    "message": "Test Connection"
+  },
+  "testingButton": {
+    "message": "Testing..."
+  },
+  "fillAllFields": {
+    "message": "Please fill in all MikroTik fields first"
+  },
+  "settingsSaved": {
+    "message": "Settings saved successfully"
+  },
+  "connectionSuccess": {
+    "message": "Connection successful! Router: $router$",
+    "placeholders": {
+      "router": { "content": "$1" }
+    }
+  },
+  "authFailed": {
+    "message": "Authentication failed: Invalid username or password"
+  },
+  "accessDenied": {
+    "message": "Access denied: User lacks required permissions"
+  },
+  "connectionFailed": {
+    "message": "Connection failed: HTTP $status$",
+    "placeholders": {
+      "status": { "content": "$1" }
+    }
+  },
+  "cannotConnect": {
+    "message": "Cannot connect to router: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "cannotGetTabUrl": {
+    "message": "Cannot get current tab URL"
+  },
+  "cannotExtractDomain": {
+    "message": "Cannot extract domain from URL"
+  },
+  "domainEmpty": {
+    "message": "Domain cannot be empty"
+  },
+  "addingButton": {
+    "message": "Adding..."
+  },
+  "notificationTitle": {
+    "message": "DNS Forward Added"
+  },
+  "notificationMessage": {
+    "message": "Domain $domain$ added to MikroTik",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "errorPrefix": {
+    "message": "Error: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "unknownRouter": {
+    "message": "Unknown Router"
+  },
+  "connectionTimeout": {
+    "message": "Connection timeout"
+  },
+  "domainAddedSuccess": {
+    "message": "Domain $domain$ added successfully",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "domainAlreadyExists": {
+    "message": "Domain $domain$ already exists in DNS",
+    "placeholders": {
+      "domain": { "content": "$1" }
+    }
+  },
+  "unknownMikrotikError": {
+    "message": "Unknown error from MikroTik"
+  },
+  "failedToConnect": {
+    "message": "Failed to connect to MikroTik: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  }
+}

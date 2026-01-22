@@ -1,7 +1,10 @@
+// Firefox uses 'browser', Chrome uses 'chrome'
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 const FETCH_TIMEOUT = 5000; // 5 seconds
 
 // Handle messages from popup/options
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'addDnsForward') {
     addDnsForward(request.domain, request.config)
       .then(result => sendResponse(result))
@@ -44,21 +47,21 @@ async function testConnection(config) {
       const data = await response.json();
       return {
         success: true,
-        identity: data.name || 'Unknown Router'
+        identity: data.name || browserAPI.i18n.getMessage('unknownRouter')
       };
     } else if (response.status === 401) {
-      return { success: false, message: 'Authentication failed: Invalid username or password', code: 'AUTH_ERROR' };
+      return { success: false, message: browserAPI.i18n.getMessage('authFailed'), code: 'AUTH_ERROR' };
     } else if (response.status === 403) {
-      return { success: false, message: 'Access denied: User lacks required permissions', code: 'FORBIDDEN' };
+      return { success: false, message: browserAPI.i18n.getMessage('accessDenied'), code: 'FORBIDDEN' };
     } else {
-      return { success: false, message: `HTTP ${response.status} - ${response.statusText}`, code: 'HTTP_ERROR' };
+      return { success: false, message: browserAPI.i18n.getMessage('connectionFailed', [response.status.toString()]), code: 'HTTP_ERROR' };
     }
   } catch (error) {
     clearTimeout(timeoutId);
     if (error.name === 'AbortError') {
-      return { success: false, message: 'Connection timeout', code: 'TIMEOUT' };
+      return { success: false, message: browserAPI.i18n.getMessage('connectionTimeout'), code: 'TIMEOUT' };
     }
-    return { success: false, message: `Cannot connect: ${error.message}`, code: 'NETWORK_ERROR' };
+    return { success: false, message: browserAPI.i18n.getMessage('cannotConnect', [error.message]), code: 'NETWORK_ERROR' };
   }
 }
 
@@ -94,7 +97,7 @@ async function addDnsForward(domain, config) {
     if (response.ok && data.ret) {
       return {
         success: true,
-        message: `Domain ${domain} added successfully`,
+        message: browserAPI.i18n.getMessage('domainAddedSuccess', [domain]),
         id: data.ret
       };
     }
@@ -103,7 +106,7 @@ async function addDnsForward(domain, config) {
     if (data.error === 400 && data.detail?.includes('already exists')) {
       return {
         success: false,
-        message: `Domain ${domain} already exists in DNS`,
+        message: browserAPI.i18n.getMessage('domainAlreadyExists', [domain]),
         code: 'ALREADY_EXISTS'
       };
     }
@@ -111,19 +114,19 @@ async function addDnsForward(domain, config) {
     // Other errors
     return {
       success: false,
-      message: data.message || data.detail || 'Unknown error from MikroTik',
+      message: data.message || data.detail || browserAPI.i18n.getMessage('unknownMikrotikError'),
       code: 'ERROR',
       details: data
     };
-    
+
   } catch (error) {
     clearTimeout(timeoutId);
     if (error.name === 'AbortError') {
-      return { success: false, message: 'Connection timeout', code: 'TIMEOUT' };
+      return { success: false, message: browserAPI.i18n.getMessage('connectionTimeout'), code: 'TIMEOUT' };
     }
     return {
       success: false,
-      message: `Failed to connect to MikroTik: ${error.message}`,
+      message: browserAPI.i18n.getMessage('failedToConnect', [error.message]),
       code: 'NETWORK_ERROR'
     };
   }

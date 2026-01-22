@@ -1,3 +1,8 @@
+// Firefox uses 'browser', Chrome uses 'chrome'
+if (typeof browserAPI === 'undefined') {
+  var browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+}
+
 let currentDomain = null;
 let config = null;
 
@@ -5,43 +10,43 @@ let config = null;
 document.addEventListener('DOMContentLoaded', async () => {
   // Load config from storage
   config = await loadConfig();
-  
+
   // Check if config is valid
   const validation = validateConfig(config);
   if (!validation.valid) {
     showConfigMissing();
     return;
   }
-  
+
   // Get current tab and extract domain
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browserAPI.tabs.query({ active: true, currentWindow: true });
   if (!tab || !tab.url) {
-    showStatus('error', 'Cannot get current tab URL');
+    showStatus('error', browserAPI.i18n.getMessage('cannotGetTabUrl'));
     return;
   }
-  
+
   currentDomain = getBaseDomain(tab.url);
   if (!currentDomain) {
-    showStatus('error', 'Cannot extract domain from URL');
+    showStatus('error', browserAPI.i18n.getMessage('cannotExtractDomain'));
     return;
   }
-  
+
   // Show main content
   document.getElementById('main-content').style.display = 'block';
   document.getElementById('domain-input').value = currentDomain;
-  
+
   // Setup button handlers
   document.getElementById('add-button').addEventListener('click', handleAddDomain);
 });
 
 // Open settings button handler
 document.getElementById('open-settings').addEventListener('click', () => {
-  chrome.runtime.openOptionsPage();
+  browserAPI.runtime.openOptionsPage();
 });
 
 async function loadConfig() {
   return new Promise((resolve) => {
-    chrome.storage.local.get(['config'], (result) => {
+    browserAPI.storage.local.get(['config'], (result) => {
       resolve(result.config || null);
     });
   });
@@ -55,34 +60,34 @@ async function handleAddDomain() {
   const button = document.getElementById('add-button');
   const domainInput = document.getElementById('domain-input');
   const domain = domainInput.value.trim();
-  
+
   if (!domain) {
-    showStatus('error', 'Domain cannot be empty');
+    showStatus('error', browserAPI.i18n.getMessage('domainEmpty'));
     return;
   }
-  
+
   button.disabled = true;
-  button.textContent = 'Adding...';
-  
+  button.textContent = browserAPI.i18n.getMessage('addingButton');
+
   try {
     // Send message to background script
-    const result = await chrome.runtime.sendMessage({
+    const result = await browserAPI.runtime.sendMessage({
       action: 'addDnsForward',
       domain: domain,
       config: config
     });
-    
+
     if (result.success) {
       showStatus('success', `✅ ${result.message}`);
-      
+
       // Show notification
-      chrome.notifications.create({
+      browserAPI.notifications.create({
         type: 'basic',
         iconUrl: '../icons/icon48.png',
-        title: 'DNS Forward Added',
-        message: `Domain ${domain} added to MikroTik`
+        title: browserAPI.i18n.getMessage('notificationTitle'),
+        message: browserAPI.i18n.getMessage('notificationMessage', [domain])
       });
-      
+
       // Close popup after 2 seconds
       setTimeout(() => window.close(), 2000);
     } else {
@@ -92,12 +97,12 @@ async function handleAddDomain() {
         showStatus('error', `❌ ${result.message}`);
       }
       button.disabled = false;
-      button.textContent = 'Add to MikroTik';
+      button.textContent = browserAPI.i18n.getMessage('addButton');
     }
   } catch (error) {
-    showStatus('error', `Error: ${error.message}`);
+    showStatus('error', browserAPI.i18n.getMessage('errorPrefix', [error.message]));
     button.disabled = false;
-    button.textContent = 'Add to MikroTik';
+    button.textContent = browserAPI.i18n.getMessage('addButton');
   }
 }
 

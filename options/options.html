@@ -2,64 +2,65 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>MikroTik DNS Forward - Settings</title>
+  <title data-i18n="settingsTitle">Settings</title>
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
   <div class="container">
-    <h1>MikroTik DNS Forward Settings</h1>
-    
+    <h1 data-i18n="settingsHeader"></h1>
+
     <div class="section">
-      <h2>MikroTik Router Configuration</h2>
-      
+      <h2 data-i18n="routerConfig"></h2>
+
       <div class="form-group">
-        <label for="mikrotik-url">Router URL:</label>
-        <input type="text" id="mikrotik-url" placeholder="http://192.168.88.1" value="http://192.168.88.1" />
-        <span class="hint">Include protocol (http:// or https://) and IP/hostname</span>
+        <label for="mikrotik-url" data-i18n="routerUrl"></label>
+        <input type="text" id="mikrotik-url" data-i18n-placeholder="routerUrlPlaceholder" value="http://192.168.88.1" />
+        <span class="hint" data-i18n="routerUrlHint"></span>
       </div>
-      
+
       <div class="form-group">
-        <label for="mikrotik-username">Username:</label>
-        <input type="text" id="mikrotik-username" placeholder="admin" autocomplete="username" />
+        <label for="mikrotik-username" data-i18n="username"></label>
+        <input type="text" id="mikrotik-username" data-i18n-placeholder="usernamePlaceholder" autocomplete="username" />
       </div>
-      
+
       <div class="form-group">
-        <label for="mikrotik-password">Password:</label>
-        <input type="password" id="mikrotik-password" placeholder="password" autocomplete="current-password" />
-        <span class="hint warning">⚠️ Password is stored locally in browser storage</span>
-        <span class="hint info">💡 Recommended: Create a separate user with limited permissions:
+        <label for="mikrotik-password" data-i18n="password"></label>
+        <input type="password" id="mikrotik-password" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password" />
+        <span class="hint warning" data-i18n="passwordWarning"></span>
+        <span class="hint info"><span data-i18n="passwordInfo"></span>
           <code>/user add name=dns-api password=long-random-password group=write</code>
         </span>
       </div>
     </div>
-    
+
     <div class="section">
-      <h2>DNS Forward Configuration</h2>
-      
+      <h2 data-i18n="dnsConfig"></h2>
+
       <div class="form-group">
-        <label for="dns-forward-to">Forward To:</label>
-        <input type="text" id="dns-forward-to" placeholder="MihomoProxyRoS" value="MihomoProxyRoS" />
-        <span class="hint">Target DNS server or proxy name</span>
+        <label for="dns-forward-to" data-i18n="forwardTo"></label>
+        <input type="text" id="dns-forward-to" data-i18n-placeholder="forwardToPlaceholder" value="MihomoProxyRoS" />
+        <span class="hint" data-i18n="forwardToHint"></span>
       </div>
-      
+
       <div class="form-group">
-        <label for="dns-comment">Comment:</label>
-        <input type="text" id="dns-comment" placeholder="_my" />
-        <span class="hint">Comment to identify DNS entries</span>
+        <label for="dns-comment" data-i18n="comment"></label>
+        <input type="text" id="dns-comment" data-i18n-placeholder="commentPlaceholder" />
+        <span class="hint" data-i18n="commentHint"></span>
       </div>
     </div>
-    
+
     <div class="actions">
-      <button id="save-button" class="primary">Save Settings</button>
-      <button id="test-button">Test Connection</button>
+      <button id="save-button" class="primary" data-i18n="saveButton"></button>
+      <button id="test-button" data-i18n="testButton"></button>
     </div>
-    
+
     <div id="status" class="status"></div>
 
     <div class="build-info">v<span id="app-version"></span> | Build: <span id="build-date">__BUILD_DATE__</span></div>
   </div>
 
   <script src="../utils.js"></script>
+  <script src="../i18n.js"></script>
   <script src="options.js"></script>
 </body>
 </html>
