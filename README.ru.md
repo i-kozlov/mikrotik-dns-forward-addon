@@ -24,7 +24,7 @@
 2. Заполнить:
    - **Router URL:** `http://192.168.88.1`
    - **Username/Password:** учётные данные MikroTik
-   - **Forward To:** целевой DNS (например, `MihomoProxyRoS`)
+   - **Forward To:** целевой DNS (например, [`MihomoProxyRoS`](https://github.com/Medium1992/mihomo-proxy-ros/blob/main/README_RU.md))
    - **Comment:** опциональный идентификатор
 3. "Test Connection" → "Save Settings"
 

@@ -26,7 +26,7 @@ Add DNS forward rules to MikroTik router with one click from any website.
 2. Fill in:
    - **Router URL:** `http://192.168.88.1`
    - **Username/Password:** MikroTik credentials
-   - **Forward To:** target DNS (e.g., `MihomoProxyRoS`)
+   - **Forward To:** target DNS (e.g., [`MihomoProxyRoS`](https://github.com/Medium1992/mihomo-proxy-ros/blob/main/README.md))
    - **Comment:** optional identifier
 3. "Test Connection" → "Save Settings"
 

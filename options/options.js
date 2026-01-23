@@ -24,6 +24,7 @@ async function loadSavedConfig() {
       document.getElementById('dns-forward-to').value = dns?.forwardTo || '';
       document.getElementById('dns-comment').value = dns?.comment || '';
       document.getElementById('dns-address-list').value = dns?.addressList || '';
+      document.getElementById('flush-dns-cache').checked = dns?.flushCache || false;
     }
   });
 }
@@ -38,7 +39,8 @@ async function saveConfig() {
     dns: {
       forwardTo: document.getElementById('dns-forward-to').value.trim(),
       comment: document.getElementById('dns-comment').value.trim(),
-      addressList: document.getElementById('dns-address-list').value.trim()
+      addressList: document.getElementById('dns-address-list').value.trim(),
+      flushCache: document.getElementById('flush-dns-cache').checked
     }
   };
 

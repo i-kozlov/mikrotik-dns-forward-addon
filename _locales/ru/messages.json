@@ -23,6 +23,12 @@
   "domainHint": {
     "message": "Вы можете изменить домен перед добавлением"
   },
+  "flushDnsCacheLabel": {
+    "message": "Очистить DNS кеш после добавления"
+  },
+  "flushDnsCacheHint": {
+    "message": "💡 Сначала создайте скрипт: /system/script/add name=flush_dns policy=read,write source=\"/ip/dns/cache/flush\""
+  },
   "addButton": {
     "message": "Добавить в MikroTik"
   },
@@ -156,6 +162,15 @@
     "message": "Домен $domain$ уже существует в DNS",
     "placeholders": {
       "domain": { "content": "$1" }
+    }
+  },
+  "dnsCacheFlushed": {
+    "message": "DNS кеш очищен"
+  },
+  "dnsCacheFlushFailed": {
+    "message": "Ошибка очистки DNS кеша: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
     }
   },
   "unknownMikrotikError": {

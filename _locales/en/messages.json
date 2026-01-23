@@ -23,6 +23,12 @@
   "domainHint": {
     "message": "You can edit the domain before adding"
   },
+  "flushDnsCacheLabel": {
+    "message": "Flush DNS cache after adding"
+  },
+  "flushDnsCacheHint": {
+    "message": "💡 Please create a script first: /system/script/add name=flush_dns policy=read,write source=\"/ip/dns/cache/flush\""
+  },
   "addButton": {
     "message": "Add to MikroTik"
   },
@@ -156,6 +162,15 @@
     "message": "Domain $domain$ already exists in DNS",
     "placeholders": {
       "domain": { "content": "$1" }
+    }
+  },
+  "dnsCacheFlushed": {
+    "message": "DNS cache flushed"
+  },
+  "dnsCacheFlushFailed": {
+    "message": "DNS cache flush failed: $error$",
+    "placeholders": {
+      "error": { "content": "$1" }
     }
   },
   "unknownMikrotikError": {

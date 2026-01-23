@@ -98,20 +98,36 @@ async function addDnsForward(domain, config) {
 
     // Success - returned ID
     if (response.ok && data.ret) {
-      return {
+      const result = {
         success: true,
         message: browserAPI.i18n.getMessage('domainAddedSuccess', [domain]),
         id: data.ret
       };
+
+      // Flush DNS cache if enabled in config
+      if (config.dns.flushCache) {
+        const flushResult = await flushDnsCache(config);
+        result.flushResult = flushResult;
+      }
+
+      return result;
     }
 
     // Error - already exists
     if (data.error === 400 && data.detail?.includes('already exists')) {
-      return {
+      const result = {
         success: false,
         message: browserAPI.i18n.getMessage('domainAlreadyExists', [domain]),
         code: 'ALREADY_EXISTS'
       };
+
+      // Flush DNS cache if enabled in config (even if domain already exists)
+      if (config.dns.flushCache) {
+        const flushResult = await flushDnsCache(config);
+        result.flushResult = flushResult;
+      }
+
+      return result;
     }
 
     // Other errors
@@ -132,5 +148,45 @@ async function addDnsForward(domain, config) {
       message: browserAPI.i18n.getMessage('failedToConnect', [error.message]),
       code: 'NETWORK_ERROR'
     };
+  }
+}
+
+async function flushDnsCache(config) {
+  const url = `${config.mikrotik.url}/rest/system/script/run`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+  const body = {
+    '.id': 'flush_dns'
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      cache: 'no-store',
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(`${config.mikrotik.username}:${config.mikrotik.password}`)
+      },
+      body: JSON.stringify(body)
+    });
+    clearTimeout(timeoutId);
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return { success: true };
+    } else {
+      // Parse error response from MikroTik
+      const errorMsg = data.detail || data.message || `HTTP ${response.status}`;
+      return { success: false, message: errorMsg };
+    }
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      return { success: false, message: 'Timeout flushing DNS cache' };
+    }
+    return { success: false, message: `Failed to flush DNS cache: ${error.message}` };
   }
 }

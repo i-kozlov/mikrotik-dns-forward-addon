@@ -66,6 +66,10 @@ async function handleAddDomain() {
     return;
   }
 
+  // Clear both status messages
+  document.getElementById('status').className = 'status';
+  document.getElementById('status-secondary').className = 'status';
+
   button.disabled = true;
   button.textContent = browserAPI.i18n.getMessage('addingButton');
 
@@ -79,6 +83,15 @@ async function handleAddDomain() {
 
     if (result.success) {
       showStatus('success', `✅ ${result.message}`);
+
+      // Show flush result as separate message if present
+      if (result.flushResult) {
+        if (result.flushResult.success) {
+          showSecondStatus('success', `✅ ${browserAPI.i18n.getMessage('dnsCacheFlushed')}`);
+        } else {
+          showSecondStatus('error', `❌ ${browserAPI.i18n.getMessage('dnsCacheFlushFailed', [result.flushResult.message])}`);
+        }
+      }
 
       // Show notification
       browserAPI.notifications.create({
@@ -96,6 +109,16 @@ async function handleAddDomain() {
       } else {
         showStatus('error', `❌ ${result.message}`);
       }
+
+      // Show flush result as separate message if present
+      if (result.flushResult) {
+        if (result.flushResult.success) {
+          showSecondStatus('success', `✅ ${browserAPI.i18n.getMessage('dnsCacheFlushed')}`);
+        } else {
+          showSecondStatus('error', `❌ ${browserAPI.i18n.getMessage('dnsCacheFlushFailed', [result.flushResult.message])}`);
+        }
+      }
+
       button.disabled = false;
       button.textContent = browserAPI.i18n.getMessage('addButton');
     }
@@ -110,4 +133,10 @@ function showStatus(type, message) {
   const status = document.getElementById('status');
   status.className = `status show ${type}`;
   status.textContent = message;
+}
+
+function showSecondStatus(type, message) {
+  const statusSecondary = document.getElementById('status-secondary');
+  statusSecondary.className = `status show ${type}`;
+  statusSecondary.textContent = message;
 }

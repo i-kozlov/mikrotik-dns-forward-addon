@@ -39,14 +39,15 @@ h2 {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.form-group label:not(.toggle-container) {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
   color: #555;
 }
 
-.form-group input {
+.form-group input[type="text"],
+.form-group input[type="password"] {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #ddd;
@@ -56,7 +57,8 @@ h2 {
   transition: border-color 0.2s;
 }
 
-.form-group input:focus {
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
   outline: none;
   border-color: #007bff;
 }
@@ -175,4 +177,53 @@ button:disabled {
   font-size: 11px;
   color: #999;
   text-align: center;
+}
+
+/* Toggle Switch */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 0;
+}
+
+.toggle-container input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-container input[type="checkbox"]:checked + .toggle-slider {
+  background-color: #007bff;
+}
+
+.toggle-container input[type="checkbox"]:checked + .toggle-slider::before {
+  transform: translateX(24px);
+}
+
+.toggle-label {
+  margin-left: 12px;
+  font-weight: 500;
+  color: #555;
 }
