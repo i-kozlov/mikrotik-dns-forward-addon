@@ -20,9 +20,6 @@
   "domainLabel": {
     "message": "Домен:"
   },
-  "domainPlaceholder": {
-    "message": "example.com"
-  },
   "domainHint": {
     "message": "Вы можете изменить домен перед добавлением"
   },
@@ -41,23 +38,14 @@
   "routerUrl": {
     "message": "URL роутера:"
   },
-  "routerUrlPlaceholder": {
-    "message": "http://192.168.88.1"
-  },
   "routerUrlHint": {
     "message": "Укажите протокол (http:// или https://) и IP/hostname"
   },
   "username": {
     "message": "Имя пользователя:"
   },
-  "usernamePlaceholder": {
-    "message": "admin"
-  },
   "password": {
     "message": "Пароль:"
-  },
-  "passwordPlaceholder": {
-    "message": "password"
   },
   "passwordWarning": {
     "message": "⚠️ Пароль хранится локально в хранилище браузера"
@@ -71,20 +59,20 @@
   "forwardTo": {
     "message": "Перенаправить на:"
   },
-  "forwardToPlaceholder": {
-    "message": "MihomoProxyRoS"
-  },
   "forwardToHint": {
     "message": "Целевой DNS сервер или имя прокси"
   },
   "comment": {
     "message": "Комментарий:"
   },
-  "commentPlaceholder": {
-    "message": "_my"
-  },
   "commentHint": {
     "message": "Комментарий для идентификации DNS записей"
+  },
+  "addressList": {
+    "message": "Список адресов:"
+  },
+  "addressListHint": {
+    "message": "Имя списка адресов файрвола, в который будет динамически добавлен адрес при совпадении с записью. Запись будет удалена из списка при истечении TTL"
   },
   "saveButton": {
     "message": "Сохранить настройки"

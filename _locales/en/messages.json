@@ -20,9 +20,6 @@
   "domainLabel": {
     "message": "Domain:"
   },
-  "domainPlaceholder": {
-    "message": "example.com"
-  },
   "domainHint": {
     "message": "You can edit the domain before adding"
   },
@@ -41,23 +38,14 @@
   "routerUrl": {
     "message": "Router URL:"
   },
-  "routerUrlPlaceholder": {
-    "message": "http://192.168.88.1"
-  },
   "routerUrlHint": {
     "message": "Include protocol (http:// or https://) and IP/hostname"
   },
   "username": {
     "message": "Username:"
   },
-  "usernamePlaceholder": {
-    "message": "admin"
-  },
   "password": {
     "message": "Password:"
-  },
-  "passwordPlaceholder": {
-    "message": "password"
   },
   "passwordWarning": {
     "message": "⚠️ Password is stored locally in browser storage"
@@ -71,20 +59,20 @@
   "forwardTo": {
     "message": "Forward To:"
   },
-  "forwardToPlaceholder": {
-    "message": "MihomoProxyRoS"
-  },
   "forwardToHint": {
     "message": "Target DNS server or proxy name"
   },
   "comment": {
     "message": "Comment:"
   },
-  "commentPlaceholder": {
-    "message": "_my"
-  },
   "commentHint": {
     "message": "Comment to identify DNS entries"
+  },
+  "addressList": {
+    "message": "Address List:"
+  },
+  "addressListHint": {
+    "message": "Name of the Firewall address list to which address must be dynamically added when some request matches the entry. Entry will be removed from the address list when TTL expires"
   },
   "saveButton": {
     "message": "Save Settings"

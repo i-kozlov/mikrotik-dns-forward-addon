@@ -14,18 +14,18 @@
 
       <div class="form-group">
         <label for="mikrotik-url" data-i18n="routerUrl"></label>
-        <input type="text" id="mikrotik-url" data-i18n-placeholder="routerUrlPlaceholder" value="http://192.168.88.1" />
+        <input type="text" id="mikrotik-url" placeholder="http://router.lan/" value="http://router.lan/" />
         <span class="hint" data-i18n="routerUrlHint"></span>
       </div>
 
       <div class="form-group">
         <label for="mikrotik-username" data-i18n="username"></label>
-        <input type="text" id="mikrotik-username" data-i18n-placeholder="usernamePlaceholder" autocomplete="username" />
+        <input type="text" id="mikrotik-username" placeholder="admin" autocomplete="username" />
       </div>
 
       <div class="form-group">
         <label for="mikrotik-password" data-i18n="password"></label>
-        <input type="password" id="mikrotik-password" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password" />
+        <input type="password" id="mikrotik-password" placeholder="password" autocomplete="current-password" />
         <span class="hint warning" data-i18n="passwordWarning"></span>
         <span class="hint info"><span data-i18n="passwordInfo"></span>
           <code>/user add name=dns-api password=long-random-password group=write</code>
@@ -38,14 +38,20 @@
 
       <div class="form-group">
         <label for="dns-forward-to" data-i18n="forwardTo"></label>
-        <input type="text" id="dns-forward-to" data-i18n-placeholder="forwardToPlaceholder" value="MihomoProxyRoS" />
+        <input type="text" id="dns-forward-to" placeholder="MihomoProxyRoS" value="MihomoProxyRoS" />
         <span class="hint" data-i18n="forwardToHint"></span>
       </div>
 
       <div class="form-group">
         <label for="dns-comment" data-i18n="comment"></label>
-        <input type="text" id="dns-comment" data-i18n-placeholder="commentPlaceholder" />
+        <input type="text" id="dns-comment" placeholder="_my" />
         <span class="hint" data-i18n="commentHint"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="dns-address-list" data-i18n="addressList"></label>
+        <input type="text" id="dns-address-list" placeholder="vpn_list" />
+        <span class="hint" data-i18n="addressListHint"></span>
       </div>
     </div>
 

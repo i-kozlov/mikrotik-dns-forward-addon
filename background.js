@@ -77,6 +77,9 @@ async function addDnsForward(domain, config) {
   if (config.dns.comment) {
     body.comment = config.dns.comment;
   }
+  if (config.dns.addressList) {
+    body['address-list'] = config.dns.addressList;
+  }
 
   try {
     const response = await fetch(url, {
