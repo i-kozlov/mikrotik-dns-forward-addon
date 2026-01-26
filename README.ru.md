@@ -43,7 +43,8 @@
 
 Создать отдельного пользователя (рекомендуется):
 ```routeros
-/user add name=dns-api password=SECURE_PASSWORD group=write
+/user group set api policy=read,write,rest-api,api
+/user add name=dns-api password=SECURE_PASSWORD group=api
 ```
 
 ## Использование
