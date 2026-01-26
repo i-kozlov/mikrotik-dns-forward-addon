@@ -60,6 +60,7 @@ async function handleAddDomain() {
   const button = document.getElementById('add-button');
   const domainInput = document.getElementById('domain-input');
   const domain = domainInput.value.trim();
+  const matchSubdomain = document.getElementById('match-subdomain').checked;
 
   if (!domain) {
     showStatus('error', browserAPI.i18n.getMessage('domainEmpty'));
@@ -78,7 +79,8 @@ async function handleAddDomain() {
     const result = await browserAPI.runtime.sendMessage({
       action: 'addDnsForward',
       domain: domain,
-      config: config
+      config: config,
+      matchSubdomain: matchSubdomain
     });
 
     if (result.success) {

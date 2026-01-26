@@ -23,6 +23,9 @@
   "domainHint": {
     "message": "You can edit the domain before adding"
   },
+  "matchSubdomainLabel": {
+    "message": "Match subdomains"
+  },
   "flushDnsCacheLabel": {
     "message": "Flush DNS cache after adding"
   },

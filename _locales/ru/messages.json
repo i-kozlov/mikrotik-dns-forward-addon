@@ -23,6 +23,9 @@
   "domainHint": {
     "message": "Вы можете изменить домен перед добавлением"
   },
+  "matchSubdomainLabel": {
+    "message": "Включая поддомены"
+  },
   "flushDnsCacheLabel": {
     "message": "Очистить DNS кеш после добавления"
   },

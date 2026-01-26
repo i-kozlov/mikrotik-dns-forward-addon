@@ -6,7 +6,7 @@ const FETCH_TIMEOUT = 5000; // 5 seconds
 // Handle messages from popup/options
 browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'addDnsForward') {
-    addDnsForward(request.domain, request.config)
+    addDnsForward(request.domain, request.config, request.matchSubdomain)
       .then(result => sendResponse(result))
       .catch(error => sendResponse({
         success: false,
@@ -65,7 +65,7 @@ async function testConnection(config) {
   }
 }
 
-async function addDnsForward(domain, config) {
+async function addDnsForward(domain, config, matchSubdomain = true) {
   const url = `${config.mikrotik.url}/rest/ip/dns/static/add`;
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
@@ -79,6 +79,9 @@ async function addDnsForward(domain, config) {
   }
   if (config.dns.addressList) {
     body['address-list'] = config.dns.addressList;
+  }
+  if (matchSubdomain) {
+    body['match-subdomain'] = 'true';
   }
 
   try {

@@ -65,6 +65,23 @@ h2 {
   color: #666;
 }
 
+.checkbox-group {
+  margin: 12px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  color: #555;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
 .actions {
   margin-bottom: 12px;
 }
