@@ -11,10 +11,16 @@
 ## Установка
 
 ### Chrome
+**Установить из Chrome Web Store:** [MikroTik DNS Forward](https://chromewebstore.google.com/detail/mikrotik-dns-forward/eigednjnnheknamnhlphkmedkccmkkbk)
+
+**Или установить вручную:**
 1. `chrome://extensions/` → Включить "Режим разработчика"
 2. "Загрузить распакованное" → выбрать папку расширения
 
 ### Firefox
+**Установить из Firefox Add-ons:** [MikroTik DNS Forward](https://addons.mozilla.org/ru/firefox/addon/mikrotik-dns-forward/)
+
+**Или установить вручную:**
 1. `about:debugging#/runtime/this-firefox`
 2. "Загрузить временное дополнение" → выбрать `manifest.firefox.json`
 

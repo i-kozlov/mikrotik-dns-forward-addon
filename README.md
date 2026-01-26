@@ -13,10 +13,16 @@ Add DNS forward rules to MikroTik router with one click from any website.
 ## Installation
 
 ### Chrome
+**Install from Chrome Web Store:** [MikroTik DNS Forward](https://chromewebstore.google.com/detail/mikrotik-dns-forward/eigednjnnheknamnhlphkmedkccmkkbk)
+
+**Or install manually:**
 1. `chrome://extensions/` → Enable "Developer mode"
 2. "Load unpacked" → select extension folder
 
 ### Firefox
+**Install from Firefox Add-ons:** [MikroTik DNS Forward](https://addons.mozilla.org/firefox/addon/mikrotik-dns-forward/)
+
+**Or install manually:**
 1. `about:debugging#/runtime/this-firefox`
 2. "Load Temporary Add-on" → select `manifest.firefox.json`
 
