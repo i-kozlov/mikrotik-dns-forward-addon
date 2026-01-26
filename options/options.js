@@ -7,6 +7,11 @@ if (typeof browserAPI === 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedConfig();
   document.getElementById('app-version').textContent = browserAPI.runtime.getManifest().version;
+
+  // Setup copy buttons
+  document.querySelectorAll('.copy-button').forEach(button => {
+    button.addEventListener('click', handleCopyClick);
+  });
 });
 
 // Button handlers
@@ -114,4 +119,27 @@ function showStatus(type, message) {
   setTimeout(() => {
     status.classList.remove('show');
   }, 5000);
+}
+
+function handleCopyClick(event) {
+  const button = event.currentTarget;
+  const targetId = button.getAttribute('data-copy-target');
+  const codeElement = document.getElementById(targetId);
+
+  if (codeElement) {
+    const text = codeElement.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      // Visual feedback
+      const originalText = button.textContent;
+      button.textContent = '✓';
+      button.style.opacity = '1';
+
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.opacity = '';
+      }, 1500);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
+  }
 }

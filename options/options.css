@@ -84,10 +84,14 @@ h2 {
   border-radius: 3px;
 }
 
+.code-block-container {
+  position: relative;
+  margin-top: 4px;
+}
+
 .hint.info code {
   display: block;
-  margin-top: 4px;
-  padding: 4px 8px;
+  padding: 8px 36px 8px 8px;
   background: #fff;
   border: 1px solid #bee5eb;
   border-radius: 3px;
@@ -95,6 +99,31 @@ h2 {
   font-size: 11px;
   color: #333;
   overflow-x: auto;
+  white-space: pre;
+}
+
+.copy-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  width: auto;
+}
+
+.copy-button:hover {
+  opacity: 1;
+  background: rgba(0, 123, 255, 0.1);
+  border-radius: 3px;
+}
+
+.copy-button:active {
+  transform: scale(0.95);
 }
 
 .actions {
