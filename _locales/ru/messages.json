@@ -184,5 +184,17 @@
     "placeholders": {
       "error": { "content": "$1" }
     }
+  },
+  "afterAddConfig": {
+    "message": "После добавления"
+  },
+  "reopenInIncognitoLabel": {
+    "message": "Открыть в инкогнито после добавления"
+  },
+  "reopenDurationLabel": {
+    "message": "Автозакрытие через (секунды, 0 = не закрывать):"
+  },
+  "reopenIncognitoHint": {
+    "message": "⚠️ Для автозакрытия инкогнито окна включите 'Allow in Incognito' для расширения в chrome://extensions"
   }
 }

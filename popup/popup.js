@@ -4,6 +4,7 @@ if (typeof browserAPI === 'undefined') {
 }
 
 let currentDomain = null;
+let currentUrl = null;
 let config = null;
 
 // Initialize popup
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
+  currentUrl = tab.url;
   currentDomain = getBaseDomain(tab.url);
   if (!currentDomain) {
     showStatus('error', browserAPI.i18n.getMessage('cannotExtractDomain'));
@@ -80,7 +82,8 @@ async function handleAddDomain() {
       action: 'addDnsForward',
       domain: domain,
       config: config,
-      matchSubdomain: matchSubdomain
+      matchSubdomain: matchSubdomain,
+      currentUrl: currentUrl
     });
 
     if (result.success) {

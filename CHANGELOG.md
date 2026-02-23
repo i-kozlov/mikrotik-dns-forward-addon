@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.4] - 2026-02-23
+
+### Added
+- **Auto-reopen in incognito after adding DNS record** - Automatically open the current URL in an incognito/private window after adding a DNS forward
+- Opens incognito even if domain already exists (not just on first add)
+- Configurable auto-close timer (0-60 seconds, 0 = window stays open, default is 0)
+- 3-second delay before opening incognito window
+- Warning hint in settings about enabling "Allow in Incognito" permission
+- Firefox private window support with proper permissions
+
+### Fixed
+- Reliable auto-close for long timeouts (30+ seconds)
+- Prevents crash when extension is not allowed in incognito mode
+
 ## [1.5.0] - 2026-01-26
 
 ### Added

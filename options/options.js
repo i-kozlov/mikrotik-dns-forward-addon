@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.copy-button').forEach(button => {
     button.addEventListener('click', handleCopyClick);
   });
+
+  // Show/hide duration input based on toggle
+  document.getElementById('reopen-in-incognito').addEventListener('change', (e) => {
+    document.getElementById('reopen-duration-group').style.display = e.target.checked ? 'block' : 'none';
+  });
 });
 
 // Button handlers
@@ -30,6 +35,11 @@ async function loadSavedConfig() {
       document.getElementById('dns-comment').value = dns?.comment || '';
       document.getElementById('dns-address-list').value = dns?.addressList || '';
       document.getElementById('flush-dns-cache').checked = dns?.flushCache || false;
+
+      const reopenInIncognito = result.config.afterAdd?.reopenInIncognito || false;
+      document.getElementById('reopen-in-incognito').checked = reopenInIncognito;
+      document.getElementById('reopen-duration').value = result.config.afterAdd?.reopenDuration ?? 0;
+      document.getElementById('reopen-duration-group').style.display = reopenInIncognito ? 'block' : 'none';
     }
   });
 }
@@ -46,6 +56,10 @@ async function saveConfig() {
       comment: document.getElementById('dns-comment').value.trim(),
       addressList: document.getElementById('dns-address-list').value.trim(),
       flushCache: document.getElementById('flush-dns-cache').checked
+    },
+    afterAdd: {
+      reopenInIncognito: document.getElementById('reopen-in-incognito').checked,
+      reopenDuration: parseInt(document.getElementById('reopen-duration').value, 10) || 0
     }
   };
 
