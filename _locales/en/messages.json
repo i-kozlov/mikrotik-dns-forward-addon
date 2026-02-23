@@ -184,5 +184,17 @@
     "placeholders": {
       "error": { "content": "$1" }
     }
+  },
+  "afterAddConfig": {
+    "message": "After Add Behavior"
+  },
+  "reopenInIncognitoLabel": {
+    "message": "Open in incognito after adding"
+  },
+  "reopenDurationLabel": {
+    "message": "Auto-close after (seconds, 0 = don't close):"
+  },
+  "reopenIncognitoHint": {
+    "message": "⚠️ To auto-close incognito window, enable 'Allow in Incognito' for this extension in chrome://extensions"
   }
 }

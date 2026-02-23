@@ -2,12 +2,73 @@
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 const FETCH_TIMEOUT = 5000; // 5 seconds
+const MAX_TIMEOUT_INTERVAL = 10000; // 10 seconds - max interval for service worker safety
+
+// Schedule window close with periodic checks (workaround for service worker sleep)
+function scheduleWindowClose(windowId, durationMs) {
+  const targetTime = Date.now() + durationMs;
+  const startTime = Date.now();
+  let checkCount = 0;
+
+  function checkAndClose() {
+    checkCount++;
+    const elapsed = Date.now() - startTime;
+    const remaining = targetTime - Date.now();
+
+    console.log(`[MikroTik DNS] Check #${checkCount} for window ${windowId}: elapsed=${Math.round(elapsed/1000)}s, remaining=${Math.round(remaining/1000)}s`);
+
+    if (remaining <= 0) {
+      // Time's up, close the window
+      console.log(`[MikroTik DNS] Time's up! Closing window ${windowId} after ${Math.round(elapsed/1000)}s (target was ${Math.round(durationMs/1000)}s)`);
+      browserAPI.windows.remove(windowId).then(() => {
+        console.log(`[MikroTik DNS] ✅ Window ${windowId} closed successfully`);
+      }).catch((error) => {
+        console.error(`[MikroTik DNS] ❌ Failed to close window ${windowId}:`, error);
+      });
+    } else {
+      // More time needed, schedule next check
+      const nextCheckIn = Math.min(remaining, MAX_TIMEOUT_INTERVAL);
+      console.log(`[MikroTik DNS] ⏰ Scheduling check #${checkCount + 1} for window ${windowId} in ${Math.round(nextCheckIn/1000)}s`);
+      setTimeout(checkAndClose, nextCheckIn);
+    }
+  }
+
+  // Start the check chain
+  const initialDelay = Math.min(durationMs, MAX_TIMEOUT_INTERVAL);
+  console.log(`[MikroTik DNS] 🚀 Starting close schedule for window ${windowId}: total=${Math.round(durationMs/1000)}s, first check in ${Math.round(initialDelay/1000)}s`);
+  setTimeout(checkAndClose, initialDelay);
+}
 
 // Handle messages from popup/options
 browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'addDnsForward') {
     addDnsForward(request.domain, request.config, request.matchSubdomain)
-      .then(result => sendResponse(result))
+      .then(result => {
+        sendResponse(result);
+        // Open incognito window on success OR if domain already exists
+        const shouldOpenIncognito = (result.success || result.code === 'ALREADY_EXISTS') &&
+                                    request.currentUrl &&
+                                    request.config.afterAdd?.reopenInIncognito;
+        if (shouldOpenIncognito) {
+          const duration = (request.config.afterAdd?.reopenDuration ?? 0) * 1000;
+          setTimeout(() => {
+            browserAPI.windows.create({ incognito: true, url: request.currentUrl }).then((window) => {
+              if (!window) {
+                console.error('[MikroTik DNS] Failed to create incognito window: window is null. Enable "Allow in Incognito" in extension settings.');
+                return;
+              }
+              console.log('[MikroTik DNS] Incognito window opened:', window.id);
+              if (duration > 0) {
+                scheduleWindowClose(window.id, duration);
+              } else {
+                console.log('[MikroTik DNS] Window will stay open (duration=0)');
+              }
+            }).catch((error) => {
+              console.error('[MikroTik DNS] Failed to create incognito window:', error);
+            });
+          }, 3000);
+        }
+      })
       .catch(error => sendResponse({
         success: false,
         message: error.message,
